@@ -6,12 +6,12 @@ models:
           arguments: 
             sourcemodel: source('analytics', 'customers_flat')
             destinationmodel: ref('int_customers')
-      - row_level_with_id: # source to target
+      - silver_row_level_with_id: # source to target
           arguments:
             column_name: customer_id
             sourcemodel: source('analytics', 'customers_flat')
             destinationmodel: ref('int_customers')
-      - row_level_with_id: # target to source
+      - silver_row_level_with_id: # target to source
           arguments:
             column_name: customer_id
             sourcemodel: ref('int_customers')
@@ -39,12 +39,12 @@ models:
           arguments: 
             sourcemodel: source('analytics', 'orders_flat')
             destinationmodel: ref('int_orders')
-      - row_level_with_id: # source to target
+      - silver_row_level_with_id: # source to target
           arguments:
             column_name: line_item_id
             sourcemodel: source('analytics', 'orders_flat')
             destinationmodel: ref('int_orders')
-      - row_level_with_id: # target to source
+      - silver_row_level_with_id: # target to source
           arguments:
             column_name: line_item_id
             sourcemodel: ref('int_orders')
@@ -75,12 +75,12 @@ models:
           arguments: 
             sourcemodel: source('analytics', 'products_flat')
             destinationmodel: ref('int_products')
-      - row_level_with_id: # source to target
+      - silver_row_level_with_id: # source to target
           arguments:
             column_name: product_id
             sourcemodel: source('analytics', 'products_flat')
             destinationmodel: ref('int_products')
-      - row_level_with_id: # target to source
+      - silver_row_level_with_id: # target to source
           arguments:
             column_name: product_id
             sourcemodel: ref('int_products')

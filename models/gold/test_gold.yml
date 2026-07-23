@@ -9,12 +9,12 @@ models:
           arguments: 
             sourcemodel: ref('int_customers')
             destinationmodel: ref('dim_customers')
-      - row_level_with_id: # source to target
+      - gold_row_level_with_id: # source to target
           arguments:
             column_name: customer_id
             sourcemodel: ref('int_customers')
             destinationmodel: ref('dim_customers')
-      - row_level_with_id: # target to source
+      - gold_row_level_with_id: # target to source
           arguments:
             column_name: customer_id
             sourcemodel: ref('dim_customers')
@@ -47,12 +47,12 @@ models:
           arguments: 
             sourcemodel: ref('int_orders')
             destinationmodel: ref('dim_orders')
-      - row_level_with_id: # source to target
+      - gold_row_level_with_id: # source to target
           arguments:
             column_name: line_item_id
             sourcemodel: ref('int_orders')
             destinationmodel: ref('dim_orders')
-      - row_level_with_id: # target to source
+      - gold_row_level_with_id: # target to source
           arguments:
             column_name: line_item_id
             sourcemodel: ref('dim_orders')
@@ -87,12 +87,12 @@ models:
           arguments: 
             sourcemodel: ref('int_products')
             destinationmodel: ref('dim_products')
-      - row_level_with_id: # source to target
+      - gold_row_level_with_id: # source to target
           arguments:
             column_name: product_id
             sourcemodel: ref('int_products')
             destinationmodel: ref('dim_products')
-      - row_level_with_id: # target to source
+      - gold_row_level_with_id: # target to source
           arguments:
             column_name: product_id
             sourcemodel: ref('dim_products')
