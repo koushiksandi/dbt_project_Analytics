@@ -2,6 +2,8 @@ models:
   - name: dim_customers
     data_tests:
       - gold_count:
+          config:
+            tags: ['silver_tests']
           arguments: 
             sourcemodel: ref('int_customers')
             destinationmodel: ref('dim_customers')
