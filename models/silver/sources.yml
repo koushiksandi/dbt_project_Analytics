@@ -1,0 +1,12 @@
+sources:
+  - name: analytics
+    schema: bronze
+    tables:
+      - name: 'customers_flat'
+        identifier: 'customers_flat'
+        
+      - name: 'orders_flat'
+        identifier: 'orders_flat'
+
+      - name: 'products_flat' 
+        identifier: 'products_flat'

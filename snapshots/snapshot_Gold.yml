@@ -1,0 +1,25 @@
+snapshots:
+
+  - name: orders_snapshot_gold
+    relation: ref('int_orders')
+    config: 
+      target_schema: 'GOLD_SNAPSHOTS'
+      strategy: 'timestamp'
+      unique_key: 'line_item_id'
+      updated_at: 'updated_at'
+
+  - name: customers_snapshot_gold
+    relation: ref('int_customers')
+    config: 
+      target_schema: 'GOLD_SNAPSHOTS'
+      strategy: 'timestamp'
+      unique_key: 'customer_id'
+      updated_at: 'updated_at'
+
+  - name: products_snapshot_gold
+    relation: ref('int_products')
+    config: 
+      target_schema: 'GOLD_SNAPSHOTS'
+      strategy: 'timestamp'
+      unique_key: 'product_id'
+      updated_at: 'updated_at'

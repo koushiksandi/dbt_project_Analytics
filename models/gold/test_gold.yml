@@ -1,0 +1,115 @@
+models:
+  - name: dim_customers
+    data_tests:
+      - gold_count:
+          arguments: 
+            sourcemodel: ref('int_customers')
+            destinationmodel: ref('dim_customers')
+      - gold_total_count:
+          arguments: 
+            sourcemodel: ref('int_customers')
+            destinationmodel: ref('dim_customers')
+      - row_level_with_id: # source to target
+          arguments:
+            column_name: customer_id
+            sourcemodel: ref('int_customers')
+            destinationmodel: ref('dim_customers')
+      - row_level_with_id: # target to source
+          arguments:
+            column_name: customer_id
+            sourcemodel: ref('dim_customers')
+            destinationmodel: ref('int_customers')
+    
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique
+          - not_null 
+      - name: loyalty_tier
+        data_tests:
+          - accepted_values:
+              arguments: 
+                values: ['platinum', 'gold', 'silver', 'bronze']
+      - name: is_active
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [true, false]
+      
+
+  - name: dim_orders
+    data_tests:
+      - gold_count:
+          arguments: 
+            sourcemodel: ref('int_orders')
+            destinationmodel: ref('dim_orders')
+      - gold_total_count:
+          arguments: 
+            sourcemodel: ref('int_orders')
+            destinationmodel: ref('dim_orders')
+      - row_level_with_id: # source to target
+          arguments:
+            column_name: line_item_id
+            sourcemodel: ref('int_orders')
+            destinationmodel: ref('dim_orders')
+      - row_level_with_id: # target to source
+          arguments:
+            column_name: line_item_id
+            sourcemodel: ref('dim_orders')
+            destinationmodel: ref('int_orders')
+
+    columns:
+      - name: line_item_id
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: 
+                to: ref('int_customers')
+                field: customer_id
+      - name: product_id
+        data_tests:
+          - relationships:
+              arguments: 
+                to: ref('int_products')
+                field: product_id
+
+  - name: dim_products
+    data_tests:
+      - gold_count:
+          arguments: 
+            sourcemodel: ref('int_products')
+            destinationmodel: ref('dim_products')
+      - gold_total_count:
+          arguments: 
+            sourcemodel: ref('int_products')
+            destinationmodel: ref('dim_products')
+      - row_level_with_id: # source to target
+          arguments:
+            column_name: product_id
+            sourcemodel: ref('int_products')
+            destinationmodel: ref('dim_products')
+      - row_level_with_id: # target to source
+          arguments:
+            column_name: product_id
+            sourcemodel: ref('dim_products')
+            destinationmodel: ref('int_products')
+
+    columns:
+      - name: product_id
+        data_tests:
+         - unique
+         - not_null
+      - name: category
+        data_tests:
+          - accepted_values:
+              arguments: 
+                values: ['Books','Toys','Clothing','Electronics','Home & Kitchen','Beauty','Sports','Grocery']
+      - name: stock_status
+        data_tests:
+          - accepted_values:
+              arguments: 
+                values: [true, false]
