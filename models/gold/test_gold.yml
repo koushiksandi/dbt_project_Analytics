@@ -2,12 +2,10 @@ models:
   - name: dim_customers
     data_tests:
       - gold_count:
-          config:
-            tags: ['silver_tests']
           arguments: 
             sourcemodel: ref('int_customers')
             destinationmodel: ref('dim_customers')
-      - gold_total_count:
+      - gold_total_count:   
           arguments: 
             sourcemodel: ref('int_customers')
             destinationmodel: ref('dim_customers')
@@ -26,7 +24,7 @@ models:
       - name: customer_id
         data_tests:
           - unique
-          - not_null 
+          - not_null   
       - name: loyalty_tier
         data_tests:
           - accepted_values:

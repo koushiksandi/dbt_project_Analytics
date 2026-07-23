@@ -39,8 +39,10 @@ models:
   dbt_project_analytics:
     silver:
       +materialized: 'table'
+      +tags: ['silver_tests']
     gold:
       +materialized: 'table'
+      +tags: ['gold_tests']
 
 data_tests: 
   +store_failures: true
