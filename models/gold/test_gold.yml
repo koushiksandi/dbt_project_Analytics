@@ -68,13 +68,13 @@ models:
           - not_null
           - relationships:
               arguments: 
-                to: ref('int_customers')
+                to: ref('dim_customers')
                 field: customer_id
       - name: product_id
         data_tests:
           - relationships:
               arguments: 
-                to: ref('int_products')
+                to: ref('dim_products')
                 field: product_id
 
   - name: dim_products
