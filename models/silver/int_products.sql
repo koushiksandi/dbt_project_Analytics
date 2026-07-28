@@ -17,6 +17,7 @@ select
     price::number(10, 2) as price,
     rating::number(2, 1) as rating,
     nullif(array_to_string(tags, ', '), '') as tags,
+    loaded_at,
     updated_at
 from int_products
 

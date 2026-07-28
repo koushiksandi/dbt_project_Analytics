@@ -11,6 +11,7 @@ WITH int_orders as (
 )
 select
     customer_id,
+    order_id,
     order_date::timestamp_ntz as order_date,
     order_total::number(15, 2) as order_total,
     payment_method,
@@ -26,6 +27,7 @@ select
         when status = 'cancelled' then 'cancelled'
         else 'open'
     end as status,
+    loaded_at,
     updated_at
 from int_orders
 

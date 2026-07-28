@@ -1,6 +1,7 @@
 {{
     config(
-        schema= 'gold'
+        schema= 'gold',
+        
     )
 }}
 with dim_customers as (

@@ -8,6 +8,7 @@ with dim_orders as (
 )
 select
     customer_id,
+    order_id,
     order_date,
     order_total,
     payment_method,

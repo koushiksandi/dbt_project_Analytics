@@ -31,6 +31,7 @@ select
         when datediff(day, current_date, signup_Date::date) between 365 and 1095 then 'recurring'
         when datediff(day, current_date, signup_Date::date) > 1095 then 'loyal'
     end as tenure,
+    loaded_at,
     updated_at
 from int_customers
 
