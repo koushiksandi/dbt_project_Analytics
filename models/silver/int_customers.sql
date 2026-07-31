@@ -26,13 +26,13 @@ select
         when is_active = false then 'low'
     end as priority,
     signup_Date::timestamp_ntz as signup_date,
-    case
+   /* case
         when datediff(day, current_date, signup_Date::date) < 365 then 'new'
         when datediff(day, current_date, signup_Date::date) between 365 and 1095 then 'recurring'
         when datediff(day, current_date, signup_Date::date) > 1095 then 'loyal'
-    end as tenure,
+    end as tenure,*/
     loaded_at,
-    updated_at
+    current_timestamp() as updated_at
 from int_customers
 
 {% if is_incremental() %}
