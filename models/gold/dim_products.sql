@@ -41,7 +41,8 @@ change_detection as (
         c.price         as existing_price,
         c.rating        as existing_rating,
         c.tags          as existing_tags,
-        c.scd2_hash     as existing_scd2_hash
+        c.scd2_hash     as existing_scd2_hash,
+        c.effective_start_date as effective_start_date
     from source_data s
     left join current_open c
         on s.product_id = c.product_id
@@ -57,7 +58,8 @@ deletion_detection as (
         c.price         as existing_price,
         c.rating        as existing_rating,
         c.tags          as existing_tags,
-        c.scd2_hash     as existing_scd2_hash
+        c.scd2_hash     as existing_scd2_hash,
+        c.effective_start_date as effective_start_date
     from source_data s
     right join current_open c
         on s.product_id = c.product_id
@@ -132,7 +134,7 @@ rows_to_update_scd1 as (
         rating,
         tags,
         scd2_hash,
-        updated_at                  as effective_start_date,
+        loaded_at                   as effective_start_date,
         null::timestamp_ntz         as effective_end_date,
         true                        as is_current
     from change_detection
@@ -143,7 +145,7 @@ rows_to_update_scd1 as (
 rows_deleted_at_source as (
     select
         existing_surrogate_key      as product_sk,
-        existing_product_id         as product_id,
+        product_id,
         existing_category           as category,
         existing_stock_status       as stock_status,
         existing_name               as name,
